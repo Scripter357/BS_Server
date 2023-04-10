@@ -2,10 +2,10 @@ import sys
 import os
 import psycopg2
 
+print("Performing first-time setup...")
 print("Connecting to database...")
 conn = psycopg2.connect(database="server_db", user="postgres", password="postgres", host="localhost", port="5432")
 cursor = conn.cursor()
-print("Performing first-time setup...")
 conn.autocommit = True
 
 cursor.execute("""
@@ -62,7 +62,7 @@ CREATE TABLE orders (
   order_id serial PRIMARY KEY,  
   salon_id INT,  
   client_id INT,  
-  totalprice FLOAT,  
+  totalprice FLOAT  
 )  
 """)
 
@@ -94,15 +94,15 @@ cursor.execute("""
 CREATE TABLE order_details(  
   order_id INT NOT NULL,  
   service_id INT NOT NULL,  
-  PRIMARY KEY (position_id, service_id),  
-  FOREIGN KEY (position_id)  
-    REFERENCES positions (position_id),  
+  PRIMARY KEY (order_id, service_id),  
+  FOREIGN KEY (order_id)  
+    REFERENCES orders (order_id),  
   FOREIGN KEY (service_id)  
     REFERENCES services (service_id),  
   employee_id INT NOT NULL,  
   quantity INT NOT NULL,  
   price_per_unit FLOAT NOT NULL,  
-  discount FLOAT,  
+  discount FLOAT  
 )  
 """)
 
@@ -119,8 +119,10 @@ CREATE TABLE employee_position(
 """)
 
 
+
+
+
 print("")
 
 print("Closing connection...")
 conn.close()
-print("All done.")
