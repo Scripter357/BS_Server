@@ -85,7 +85,7 @@ INSERT INTO salon_service VALUES
 """)
 
 cursor.execute("""
-INSERT INTO salon_service VALUES
+INSERT INTO employee_position VALUES
   (1, 1),
   (1, 2),
   (1, 5),
@@ -106,9 +106,9 @@ INSERT INTO orders VALUES
 cursor.execute("""
 INSERT INTO order_details VALUES
   (1, 1, 1, 1, 1500),
-  (1, 2, 1, 1, 6500)
+  (1, 2, 1, 1, 6500),
   (1, 3, 1, 1, 1800),
-  (2, 3, 4, 1, 1800)
+  (2, 3, 4, 1, 1800),
   (2, 4, 4, 1, 2100),
   (2, 7, 1, 1, 900)
 """)
